@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <title>Exercice 4</title>
+</head>
+<body>
+  <form>
+    <ul>
+      <li>
+        <label for="lastname">Nom : </label>
+        <input type="text" name="formRegex" id="lastname" />
+      </li>
+      <li>
+        <label for="firstname">Prénom : </label>
+        <input type="text" name="formRegex" id="firstname" />
+      </li>
+      <li>
+        <label for="birthDate">Date de naissance : </label>
+        <input type="text" name="formRegex" id="birthDate" />
+      </li>
+      <li>
+        <label for="birthPlace">Lieu de naissance : </label>
+        <input type="text" name="formRegex" id="birthPlace" />
+      </li>
+      <li>
+        <label for="job">Emploi : </label>
+        <input type="text" name="formRegex" id="job" />
+      </li>
+      <li>
+        <label for="society">Société : </label>
+        <input type="text" name="formRegex" id="society" />
+      </li>
+      <li>
+        <label for="mail">Adresse mail : </label>
+        <input type="mail" name="formRegex" id="mail" />
+      </li>
+      <li>
+        <label for="phoneNumber">Numéro de téléphone : </label>
+        <input type="text" name="formRegex" id="phoneNumber" />
+      </li>
+      <li>
+        <button type="button" id="regexFormButton" style="height: 80px; width: 150px;">Générer</button>
+      </li>
+    </ul>
+  </form>
+  <script>
+  var regexText = /^[a-zA-Z\-àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+$/;
+  var regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+  var regexPhoneNumber = /^[\d]{10}$/;
+  var regexBirthDate = /^((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\/((?:0[1-9])|(?:1[0-2]))\/(\d{4})$/;
+
+// ACTIVATION DU BOUTON
+  $('#regexFormButton').click(function(){
+//  DECLARATION ET RECUPERATION DES VALEURS DES VARIABLES
+    var lastname = $('#lastname').val();
+    var firstname = $('#firstname').val();
+    var birthPlace = $('#birthPlace').val();
+    var birthDate = $('#birthDate').val();
+    var job = $('#job').val();
+    var society = $('#society').val();
+    var mail = $('#mail').val();
+    var phoneNumber = $('#phoneNumber').val();
+// VERIFICATION DES VARIABLES PAR RAPPORT AUX REGEX
+    if(lastname.match(regexText)
+    && firstname.match(regexText)
+    && birthPlace.match(regexText)
+    && birthDate.match(regexBirthDate)
+    && job.match(regexText)
+    && society.match(regexText)
+    && mail.match(regexMail)
+    && phoneNumber.match(regexPhoneNumber)){
+      // BOITE DE DIALOGUE AVEC TOUTES LES VARIABLES
+      alert(firstname + ' ' + lastname + ', né le ' + birthDate + ' à ' + birthPlace + ', actuellement ' + job + ' à ' + society + '.');
+    }else{
+      alert('c po bon');
+    }
+  });
+  </script>
+</body>
+</html>
